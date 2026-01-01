@@ -57,7 +57,7 @@ form.addEventListener("submit", async (e) => {
     month: document.querySelector('select[name="month"]').value,
     year: document.querySelector('select[name="year"]').value
   };
-  // -------- NAME --------
+  
   if (!name) {
     document.getElementById("nameError").textContent = "Name is required";
     isValidName = false;
@@ -81,6 +81,18 @@ form.addEventListener("submit", async (e) => {
   isValid = false;
 }
    if (!isValid) return;
+   const res = await fetch("http://localhost:3000/employee");
+const employees = await res.json();
+
+const nameExists = employees.some(emp =>
+  emp.name.toLowerCase() === name.trim().toLowerCase()
+);
+
+if (nameExists && !empId) {
+  document.getElementById("nameError").textContent =
+    "This name already exists";
+  return;
+}
 
   const employeeData = {
     name,
