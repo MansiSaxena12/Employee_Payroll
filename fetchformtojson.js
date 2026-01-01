@@ -32,6 +32,16 @@ const form = document.querySelector("form");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
+   let isValidName = true;
+   let isValid = true;
+
+  document.getElementById("nameError").textContent = "";
+  document.getElementById("genderError").textContent = "";
+  document.getElementById("deptError").textContent = "";
+  document.getElementById("salaryError").textContent = "";
+  document.getElementById("dateError").textContent = "";
+
+
   const name = document.querySelector('input[name="name"]').value;
   const profileimg = document.querySelector('input[name="profileimg"]:checked')?.value;
   const gender = document.querySelector('input[name="gender"]:checked')?.value;
@@ -47,6 +57,30 @@ form.addEventListener("submit", async (e) => {
     month: document.querySelector('select[name="month"]').value,
     year: document.querySelector('select[name="year"]').value
   };
+  // -------- NAME --------
+  if (!name) {
+    document.getElementById("nameError").textContent = "Name is required";
+    isValidName = false;
+  }
+  if (!gender) {
+    document.getElementById("genderError").textContent = "Select gender";
+    isValid = false;
+  }
+  
+  if (department.length === 0) {
+    document.getElementById("deptError").textContent = "Select at least one department";
+    isValid = false;
+  }
+  if (!salary) {
+    document.getElementById("salaryError").textContent = "Select salary";
+    isValid = false;
+  }
+  if (!startdate.day || !startdate.month || !startdate.year) {
+  document.getElementById("dateError").textContent =
+    "Select date";
+  isValid = false;
+}
+   if (!isValid) return;
 
   const employeeData = {
     name,
@@ -76,5 +110,3 @@ form.addEventListener("submit", async (e) => {
   window.location.href=`practicetable.html`;
   alert(empId ? "Employee Updated ✅" : "Employee Added ✅");
 });
-
-
