@@ -111,20 +111,6 @@
         "month": "Oct",
         "year": "2023"
       }
-    },
-    {
-      "id": "140c",
-      "name": "Lovely Pandey",
-      "gender": "Male",
-      "department": [
-        "Sales"
-      ],
-      "salary": "",
-      "startdate": {
-        "day": "18",
-        "month": "Dec",
-        "year": "2023"
-      }
     }
   ]
 }
