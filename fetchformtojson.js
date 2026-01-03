@@ -128,3 +128,19 @@ if (nameExists && !empId) {
   window.location.href=`practicetable.html`;
   alert(empId ? "Employee Updated ✅" : "Employee Added ✅");
 });
+
+
+// CANCEL BUTTON CONFIRMATION
+const cancelBtn = document.getElementById("cancelBtn");
+
+if (cancelBtn) {
+  cancelBtn.addEventListener("click", () => {
+    const confirmCancel = confirm(
+      "Are you sure you want to cancel?\nAll unsaved changes will be lost."
+    );
+
+    if (confirmCancel) {
+      window.location.href = "practicetable.html";
+    }
+  });
+}
