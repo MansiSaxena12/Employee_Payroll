@@ -1,0 +1,11 @@
+.dept-badge {
+  display: inline-block;
+  padding: 4px 10px;
+  margin: 2px 4px 2px 0;
+  background-color: #E9FEA5;
+  color: #3D3D3D;
+  border-radius: 20px;   /* makes it circular/rounded */
+  font-size: 12px;
+  font-weight: 500;
+  white-space: nowrap;
+}

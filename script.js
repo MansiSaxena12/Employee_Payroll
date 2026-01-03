@@ -13,12 +13,16 @@ fetch("db.json")
     employee.reverse();
     const tbody = document.querySelector("#mytablw tbody");
     console.log(employee);
+    
 
     tbody.innerHTML = ""; // clear table first
 
     employee.forEach(emp => {
       console.log(emp.profile_img);
       // console.log(emp.startdate[0] ,emp.startdate[1]);
+      const deptBadges = emp.department
+    .map(dep => `<span class="dept-badge">${dep}</span>`)
+    .join("");
       const tr = document.createElement("tr");
 
       tr.innerHTML = `
@@ -27,10 +31,16 @@ fetch("db.json")
         </td>
         <td>${emp.name}</td>
         <td>${emp.gender}</td>
-        <td>${emp.department.join(" ")}</td>
-        <td>${emp.salary.toLocaleString()}</td>
+        <td>${deptBadges}</td>
+        
+        <td>₹ ${emp.salary.toLocaleString()}</td>
         <td>${emp.startdate.day} ${emp.startdate.month} ${emp.startdate.year}</td>
-        <td><button class="delete-btn" data-id=${emp.id}>🗑️</button> <button class="edit-btn" data-id=${emp.id}>✏️</button></td>
+        <td><button class="btn btn-sm delete-btn px-1 py-0" data-id="${emp.id}">
+          <i class="bi bi-trash3-fill" style="color:#658298"></i>
+        </button>
+        <button class="btn btn-sm edit-btn px-1 py-0" data-id="${emp.id}">
+          <i class="bi bi-pencil-fill" style="color:#658292"></i>
+        </button></td>
       `;
 
       tbody.appendChild(tr);

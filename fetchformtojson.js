@@ -1,5 +1,6 @@
 // GET ID FROM URL
 const params = new URLSearchParams(window.location.search);
+console.log(window.location);
 const empId = params.get("id");
 
 // EDIT MODE
@@ -32,7 +33,7 @@ const form = document.querySelector("form");
 form.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-   let isValidName = true;
+
    let isValid = true;
 
   document.getElementById("nameError").textContent = "";
@@ -40,6 +41,7 @@ form.addEventListener("submit", async (e) => {
   document.getElementById("deptError").textContent = "";
   document.getElementById("salaryError").textContent = "";
   document.getElementById("dateError").textContent = "";
+  document.getElementById("profileimgerror").textContent = "";
 
 
   const name = document.querySelector('input[name="name"]').value;
@@ -59,25 +61,29 @@ form.addEventListener("submit", async (e) => {
   };
   
   if (!name) {
-    document.getElementById("nameError").textContent = "Name is required";
-    isValidName = false;
+    document.getElementById("nameError").textContent = "name is required*";
+    isValid = false;
   }
   if (!gender) {
-    document.getElementById("genderError").textContent = "Select gender";
+    document.getElementById("genderError").textContent = "gender is required*";
+    isValid = false;
+  }
+  if (!profileimg) {
+    document.getElementById("profileimgerror").textContent = "image is required*";
     isValid = false;
   }
   
   if (department.length === 0) {
-    document.getElementById("deptError").textContent = "Select at least one department";
+    document.getElementById("deptError").textContent = "select at least one department*";
     isValid = false;
   }
   if (!salary) {
-    document.getElementById("salaryError").textContent = "Select salary";
+    document.getElementById("salaryError").textContent = "select salary*";
     isValid = false;
   }
   if (!startdate.day || !startdate.month || !startdate.year) {
   document.getElementById("dateError").textContent =
-    "Select date";
+    "select date*";
   isValid = false;
 }
    if (!isValid) return;
